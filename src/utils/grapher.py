@@ -1,16 +1,29 @@
-# src/utils/grapher.py
-
 import matplotlib.pyplot as plt
 
-def graficar_senal(t_cont, x_cont, t_disc, x_disc, titulo):
-    plt.figure()
-    plt.plot(t_cont, x_cont, label="Señal continua", linewidth=2)
-    plt.stem(t_disc, x_disc, linefmt='r-', markerfmt='ro', basefmt='k-', 
-             label="Señal muestreada", use_line_collection=True)
-    plt.xlabel("Tiempo (s)")
-    plt.ylabel("Amplitud")
-    plt.title(titulo)
+
+def continuous_plotter(
+    ind_var, dep_var,
+    title: str = "", graph_label: str = "",
+    x_label: str = "", y_label: str = ""
+):
+    plt.plot(ind_var, dep_var, label=graph_label)
+    plt.title(title)
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.legend(loc='upper right')
     plt.grid(True)
-    plt.legend()
-    plt.tight_layout()
+    plt.show()
+
+
+def discrete_plotter(
+    ind_var, dep_var,
+    title: str = "", graph_label: str = "",
+    x_label: str = "", y_label: str = ""
+):
+    plt.stem(ind_var, dep_var, label=graph_label)
+    plt.title(title)
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.legend(loc='upper right')
+    plt.grid(True)
     plt.show()
