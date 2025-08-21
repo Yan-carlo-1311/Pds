@@ -79,4 +79,4 @@ if __name__ == '__main__':
         print(" python main.py tarea_3 1 2 0.785")
         print(" python main.py tarea_4 8") 
         print(" python main.py Exam_01") 
-        print(" python main.py Exam_02")
+        print(" python main.py Exam_02") 

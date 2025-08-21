@@ -1,40 +1,80 @@
 import matplotlib.pyplot as plt
 
-def continuous_plotter(x, y, title="", xlabel="Tiempo [s]", ylabel="Amplitud", legend=None):
-    """Grafica una señal continua (ej: tiempo vs amplitud)."""
-    plt.figure(figsize=(8, 4))
-    plt.plot(x, y, label=legend)
+def continuous_plotter(
+    ind_var, dep_var,
+    title: str = "", graph_label: str = "",
+    x_label: str = "", y_label: str = ""
+):
+    plt.figure(figsize=(8,5))
+    plt.plot(ind_var, dep_var, label=graph_label)
     plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    if legend:
-        plt.legend()
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    if graph_label:
+        plt.legend(loc='upper right')
     plt.grid(True)
     plt.tight_layout()
     plt.show()
 
-def discrete_plotter(x, y, title="", xlabel="Muestras [n]", ylabel="Amplitud", legend=None):
-    """Grafica una señal discreta (ej: muestras vs amplitud)."""
-    plt.figure(figsize=(8, 4))
-    plt.stem(x, y, basefmt=" ", use_line_collection=True, label=legend)
+
+def discrete_plotter(
+    ind_var, dep_var,
+    title: str = "", graph_label: str = "",
+    x_label: str = "", y_label: str = ""
+):
+    plt.figure(figsize=(8,5))
+    plt.stem(ind_var, dep_var, label=graph_label, basefmt=" ")
     plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    if legend:
-        plt.legend()
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    if graph_label:
+        plt.legend(loc='upper right')
     plt.grid(True)
     plt.tight_layout()
     plt.show()
 
-def spectrum_plotter(freqs, mag, title="", xlabel="Frecuencia [Hz]", ylabel="Magnitud", legend=None):
-    """Grafica espectros en frecuencia."""
-    plt.figure(figsize=(8, 4))
-    plt.plot(freqs, mag, label=legend)
+
+def double_plotter(
+    t, ref_signal, new_signal,
+    title: str = "", ref_label: str = "Referencia", new_label: str = "Modificada",
+    x_label: str = "Tiempo (s)", y_label: str = "Amplitud"
+):
+    plt.figure(figsize=(8,5))
+    plt.plot(t, ref_signal, 'r--', label=ref_label)
+    plt.plot(t, new_signal, 'b-', label=new_label)
     plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    if legend:
-        plt.legend()
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.legend(loc='upper right')
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+
+def dac_plotter(entradas_digitales, salida_analogica, bits):
+    plt.figure(figsize=(8, 5))
+    plt.step(entradas_digitales, salida_analogica, where='post', color='b', linewidth=2, label='Salida DAC')
+    plt.scatter(entradas_digitales, salida_analogica, color='r')
+    plt.title(f'Salida Analógica del DAC ({bits} bits)')
+    plt.xlabel('Entrada Digital')
+    plt.ylabel('Voltaje de Salida (V)')
+    plt.grid(True)
+    plt.legend(loc='upper right')
+    plt.tight_layout()
+    plt.show()
+
+def double_discrete_plotter(
+    t, signal1, signal2,
+    title: str = "", label1: str = "Señal 1", label2: str = "Señal 2",
+    x_label: str = "Tiempo", y_label: str = "Amplitud"
+):
+    plt.figure(figsize=(8,5))
+    plt.stem(t, signal1, label=label1, basefmt=" ")
+    plt.stem(t, signal2, linefmt='r', markerfmt='ro', label=label2, basefmt=" ")
+    plt.title(title)
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.legend(loc='upper right')
     plt.grid(True)
     plt.tight_layout()
     plt.show()
