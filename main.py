@@ -7,8 +7,11 @@ from src.Tarea_1 import (
 )
 from src.Tarea_2 import understanding_freq
 from src.Tarea_3 import compare_sine_signals
-from src.Tarea_4 import analyze_dac_resolution  # ← NUEVA IMPORTACIÓN
+from src.Tarea_4 import analyze_dac_resolution
+from src.Actividad_1 import par_impar
 
+from src.Exam_01 import exam_p1
+from src.Exam_02 import exam_p2
 
 def main(options):
     if options[1].lower() == "tarea_1":
@@ -48,18 +51,23 @@ def main(options):
         phi = float(options[4])
         compare_sine_signals(A, f, phi)
 
-    elif options[1].lower() == "tarea_4":  # ← NUEVO BLOQUE
+    elif options[1].lower() == "tarea_4":
         if len(options) < 3:
             print("Falta el número de bits. Ejemplo: python main.py tarea_4 8")
             return
         bits = int(options[2])
         analyze_dac_resolution(bits)
 
+    elif options[1] == "Exam_01": 
+        exam_p1()
+    elif options[1] == "Exam_02":
+        exam_p2()
     else:
-        print("Tarea no reconocida. Usa: tarea_1, tarea_2, tarea_3 o tarea_4")
+        print("Tarea no reconocida inge")
 
 
 if __name__ == '__main__':
+
     args = sys.argv
     if len(args) > 1:
         main(args)
@@ -69,4 +77,6 @@ if __name__ == '__main__':
         print(" python main.py tarea_1 seno")
         print(" python main.py tarea_2 2")
         print(" python main.py tarea_3 1 2 0.785")
-        print(" python main.py tarea_4 8")  # ← AGREGADO EN LA AYUDA
+        print(" python main.py tarea_4 8") 
+        print(" python main.py Exam_01") 
+        print(" python main.py Exam_02")
